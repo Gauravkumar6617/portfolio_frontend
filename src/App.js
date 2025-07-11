@@ -1,5 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
+import { Analytics } from "@vercel/analytics/react"
 import { SpeedInsights } from "@vercel/speed-insights/react"
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { NavBar } from "./components/NavBar";
@@ -17,6 +18,7 @@ function App() {
       <Skills />
       <Projects />
       <Contact />
+      <Analytics/>
       <SpeedInsights />
       <Footer />
     </div>
