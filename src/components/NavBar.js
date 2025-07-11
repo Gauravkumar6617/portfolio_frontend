@@ -48,9 +48,11 @@ export const NavBar = () => {
             </Nav>
             <span className="navbar-text">
               <div className="social-icon">
-                <a href="https://www.instagram.com/am_i_gauravkumar"><img src={navIcon1} alt="" /></a>
-                <a href="https://www.linkedin.com/in/gauravkumar9452?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"><img src={navIcon2} alt="" /></a>
-                <a href="https://www.facebook.com/share/19VgUVmTrG/?mibextid=wwXIfr"><img src={navIcon3} alt="" /></a>
+            
+                <a href="  https://www.linkedin.com/in/gauravkumar9452?utm_source=share&utm_campaign=share_via&utm_content=profile&utm_medium=ios_app"><img src={navIcon1} alt="" /></a>
+                <a href="https://www.facebook.com/share/19VgUVmTrG/?mibextid=wwXIfr"><img src={navIcon2} alt="" /></a>
+                <a href="https://www.instagram.com/am_i_gauravkumar"><img src={navIcon3} alt="" /></a>
+                
               </div>
               <HashLink to='#connect'>
                 <button className="vvd"><span>Let’s Connect</span></button>
