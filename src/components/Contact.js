@@ -27,29 +27,39 @@ export const Contact = () => {
     e.preventDefault();
     setButtonText("Sending...");
     try {
-      const response = await fetch("https://portfolio-backend-f10j.onrender.com", {
+      const response = await fetch("https://portfolio-backend-f10j.onrender.com/contact", {
         method: "POST",
         headers: {
           "Content-Type": "application/json;charset=utf-8",
         },
         body: JSON.stringify(formDetails),
       });
-
-      const result = await response.json();
-      setButtonText("Send");
-      setFormDetails(formInitialDetails);
-
-      if (result.success) {
-        setStatus({ success: true, message: 'Message sent successfully!' });
+  
+      const contentType = response.headers.get("content-type");
+      if (!response.ok) {
+        throw new Error(`Server responded with status ${response.status}`);
+      }
+  
+      if (contentType && contentType.includes("application/json")) {
+        const result = await response.json();
+        setFormDetails(formInitialDetails);
+        if (result.success) {
+          setStatus({ success: true, message: "Message sent successfully!" });
+        } else {
+          setStatus({ success: false, message: result.error || "Something went wrong, please try again." });
+        }
       } else {
-        setStatus({ success: false, message: result.error || 'Something went wrong, please try again later.' });
+        const text = await response.text();
+        throw new Error(`Unexpected response: ${text}`);
       }
     } catch (error) {
-      console.error("Error submitting form:", error);
+      console.error("❌ Error submitting form:", error);
+      setStatus({ success: false, message: error.message || "Something went wrong." });
+    } finally {
       setButtonText("Send");
-      setStatus({ success: false, message: 'Something went wrong, please try again later.' });
     }
   };
+  
 
   return (
     <section className="contact" id="connect">
